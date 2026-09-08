@@ -114,7 +114,7 @@ Layout under `src/rsvp_reader/`:
 | `session.py` | Reading cursor over units; position survives mode and chunk-size changes |
 | `autoplay.py` | WPM ramp and due-time logic driven by an external clock |
 | `layout.py` | Pivot box and flow-text geometry |
-| `settings.py`, `progress.py`, `storage.py`, `paths.py` | Validated settings, per-book resume, atomic JSON, config locations |
+| `settings.py`, `progress.py`, `storage.py`, `paths.py`, `colors.py` | Validated settings, per-book resume, atomic JSON, config locations, hex color helpers |
 | `library.py` | Folder listing |
 | `app.py`, `browser_view.py`, `reader_view.py`, `settings_panel.py`, `theme.py` | Tk shell and views |
 | `cli.py` | Argument parsing and entry point |
