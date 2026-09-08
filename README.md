@@ -97,7 +97,7 @@ uv run ruff format src tests
 uv build                 # sdist and wheel under dist/
 ```
 
-CI runs lint, tests and a wheel build on Linux, macOS and Windows for every push and pull request.
+CI runs lint and tests on Linux, macOS and Windows for every push and pull request, and builds the wheel on Linux.
 
 ### Releasing
 

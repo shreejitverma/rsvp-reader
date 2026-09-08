@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from rsvp_reader.progress import ProgressStore
@@ -23,7 +24,12 @@ def test_round_trip_and_normalization(tmp_path: Path):
 
 def test_corrupt_values_dropped(tmp_path: Path):
     p = tmp_path / "p.json"
-    p.write_text('{"/x": "no", "/y": -1, "/z": 7}', encoding="utf-8")
+    x, y, z = (tmp_path / name for name in ("x", "y", "z"))
+    p.write_text(
+        json.dumps({str(x.resolve()): "no", str(y.resolve()): -1, str(z.resolve()): 7}),
+        encoding="utf-8",
+    )
     store = ProgressStore(p)
-    assert store.get(Path("/z")) == 7
-    assert store.get(Path("/x")) == 0
+    assert store.get(z) == 7
+    assert store.get(x) == 0
+    assert store.get(y) == 0
