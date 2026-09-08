@@ -15,6 +15,16 @@ def test_pivot_box_is_centered_and_fixed():
     )
 
 
+def test_pivot_box_edges_are_whole_pixels_for_odd_sizes():
+    box = pivot_box(center_x=514, center_y=300, text_height=61, inner_width=29)
+    for edge in (box.left, box.right, box.top, box.bottom, box.text_top):
+        assert edge == int(edge), edge
+    assert (box.left + box.right) / 2 == 514
+    assert (box.top + box.bottom) / 2 == 300
+    assert box.right - box.left == 30 + 2 * PAD_X
+    assert box.bottom - box.top == 62 + 2 * PAD_Y
+
+
 def test_flow_positions_right_anchored_ends_at_edge():
     measure = len
     pos = flow_positions(["ab", "cde"], measure, space_width=1, edge_x=100, anchor_right=True)

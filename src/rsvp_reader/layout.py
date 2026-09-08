@@ -37,8 +37,10 @@ TICK_LENGTH = 14
 
 
 def pivot_box(*, center_x: float, center_y: float, text_height: int, inner_width: int) -> PivotBox:
-    half_w = inner_width / 2 + PAD_X
-    half_h = text_height / 2 + PAD_Y
+    """Box edges are whole pixels: Tk snaps canvas text to integer x, so a half-pixel edge
+    would leave the flush text one pixel off. An odd inner size rounds the box up by 1 px."""
+    half_w = (inner_width + 1) // 2 + PAD_X
+    half_h = (text_height + 1) // 2 + PAD_Y
     top = center_y - half_h
     bottom = center_y + half_h
     return PivotBox(
