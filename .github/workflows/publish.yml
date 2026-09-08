@@ -1,0 +1,48 @@
+name: Publish
+
+# Publishes to PyPI through trusted publishing (OIDC) when a GitHub release is published.
+# The release tag must be v<version>, where <version> is __version__ in src/rsvp_reader/__init__.py.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+      - run: uv build
+      - name: Check that the release tag matches the package version
+        run: |
+          version="$(uv run --no-project --isolated --with dist/*.whl rsvp-reader --version | awk '{print $2}')"
+          if [ "${GITHUB_REF_NAME}" != "v${version}" ]; then
+            echo "release tag ${GITHUB_REF_NAME} does not match package version ${version}" >&2
+            exit 1
+          fi
+      - run: uv run --no-project --isolated --with dist/*.whl rsvp-reader --version
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/rsvp-reader/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+      - uses: astral-sh/setup-uv@v10
+      - run: uv publish --trusted-publishing always

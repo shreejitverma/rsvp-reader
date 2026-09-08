@@ -1,0 +1,70 @@
+[project]
+name = "rsvp-reader"
+dynamic = ["version"]
+description = "Spritz-style rapid serial visual presentation reader for plain-text books, with a fixed pivot letter and per-book resume."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Shreejit Verma" }]
+keywords = ["rsvp", "speed-reading", "spritz", "tkinter", "reader"]
+classifiers = [
+  "Environment :: X11 Applications",
+  "Environment :: MacOS X",
+  "Environment :: Win32 (MS Windows)",
+  "Intended Audience :: End Users/Desktop",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Text Processing",
+]
+dependencies = []
+
+[project.scripts]
+rsvp-reader = "rsvp_reader.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/shreejitverma/rsvp-reader"
+Repository = "https://github.com/shreejitverma/rsvp-reader"
+Issues = "https://github.com/shreejitverma/rsvp-reader/issues"
+Releases = "https://github.com/shreejitverma/rsvp-reader/releases"
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/rsvp_reader/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rsvp_reader"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src/rsvp_reader", "tests"]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF", "N", "PL"]
+ignore = [
+  "PLR0913", # many keyword args are fine for layout/geometry helpers
+  "PLR2004", # magic numbers in tests and geometry are self-explanatory
+  "RUF001", "RUF002", "RUF003", # typographic quotes and dashes are this project's domain
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR0915"]

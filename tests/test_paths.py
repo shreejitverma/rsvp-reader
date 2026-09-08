@@ -1,0 +1,22 @@
+from pathlib import Path
+
+from rsvp_reader.paths import default_book_root, user_config_dir
+
+
+def test_config_dir_override():
+    assert user_config_dir({"RSVP_READER_CONFIG_DIR": "/tmp/x"}, "darwin") == Path("/tmp/x")
+
+
+def test_config_dir_per_platform():
+    env = {"HOME": "/home/u"}
+    assert user_config_dir(env, "darwin") == Path("/home/u/Library/Application Support/rsvp-reader")
+    assert user_config_dir(env, "linux") == Path("/home/u/.config/rsvp-reader")
+    assert user_config_dir({**env, "XDG_CONFIG_HOME": "/xdg"}, "linux") == Path("/xdg/rsvp-reader")
+    assert user_config_dir({**env, "APPDATA": "C:/AppData"}, "win32") == Path(
+        "C:/AppData/rsvp-reader"
+    )
+
+
+def test_default_book_root():
+    assert default_book_root({}, Path("/w")) == Path("/w/book")
+    assert default_book_root({"RSVP_READER_BOOK_ROOT": "/b"}, Path("/w")) == Path("/b")
