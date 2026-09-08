@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Personal content: books and the legacy single-script settings file
+book/
+rsvp_settings.json
+
+# Local task tracking (tasks-axi)
+backlog.md
+
+# macOS
+.DS_Store
