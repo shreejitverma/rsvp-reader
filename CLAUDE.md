@@ -6,7 +6,7 @@ Tkinter RSVP (Spritz-style) reader packaged under `src/rsvpreader/`; see README.
 
 ```sh
 uv sync                                   # Python 3.12 via .python-version (has Tk; Homebrew 3.14 does not)
-uv run pytest                             # 131 tests, ~2 s; Tk smoke tests open a real window and skip headless
+uv run pytest                             # 132 tests, ~2 s; Tk smoke tests open a real window and skip headless
 uv run ruff check src tests && uv run ruff format --check src tests
 uv run rsvpreader --windowed             # run the app
 uv run rsvpreader --dump-chunks FILE     # inspect chunking without a GUI (works on Tk-less Pythons too)
