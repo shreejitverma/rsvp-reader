@@ -1,5 +1,5 @@
 [project]
-name = "rsvp-reader"
+name = "rsvpreader"
 dynamic = ["version"]
 description = "Spritz-style rapid serial visual presentation reader for plain-text books, with a fixed pivot letter and per-book resume."
 readme = "README.md"
@@ -25,26 +25,26 @@ classifiers = [
 dependencies = []
 
 [project.scripts]
-rsvp-reader = "rsvp_reader.cli:main"
+rsvpreader = "rsvpreader.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/shreejitverma/rsvp-reader"
-Repository = "https://github.com/shreejitverma/rsvp-reader"
-Issues = "https://github.com/shreejitverma/rsvp-reader/issues"
-Releases = "https://github.com/shreejitverma/rsvp-reader/releases"
+Homepage = "https://github.com/shreejitverma/rsvpreader"
+Repository = "https://github.com/shreejitverma/rsvpreader"
+Issues = "https://github.com/shreejitverma/rsvpreader/issues"
+Releases = "https://github.com/shreejitverma/rsvpreader/releases"
 
 [build-system]
 requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "src/rsvp_reader/__init__.py"
+path = "src/rsvpreader/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/rsvp_reader"]
+packages = ["src/rsvpreader"]
 
 [tool.hatch.build.targets.sdist]
-only-include = ["src/rsvp_reader", "tests"]
+only-include = ["src/rsvpreader", "tests"]
 
 [dependency-groups]
 dev = ["pytest>=8", "ruff>=0.6"]

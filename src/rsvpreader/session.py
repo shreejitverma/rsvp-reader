@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from rsvp_reader.text import build_units
+from rsvpreader.text import build_units
 
 
 class ReadingSession:

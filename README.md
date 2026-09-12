@@ -1,10 +1,10 @@
-# RSVP Reader
+# rsvpreader
 
 A Spritz-style rapid serial visual presentation reader for plain-text books.
 It shows one chunk of one to three words at a time with a fixed pivot letter pinned to the center of the screen, or one full sentence at a time, and remembers where you stopped in every book.
 
-[![CI](https://github.com/shreejitverma/rsvp-reader/actions/workflows/ci.yml/badge.svg)](https://github.com/shreejitverma/rsvp-reader/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/rsvp-reader)](https://pypi.org/project/rsvp-reader/)
+[![CI](https://github.com/shreejitverma/rsvpreader/actions/workflows/ci.yml/badge.svg)](https://github.com/shreejitverma/rsvpreader/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/rsvpreader)](https://pypi.org/project/rsvpreader/)
 
 ## Install and run
 
@@ -14,22 +14,22 @@ On macOS, Homebrew's Python ships without Tk; `uv` installs a Python that has it
 From PyPI:
 
 ```sh
-uv tool install rsvp-reader   # or: pipx install rsvp-reader, pip install rsvp-reader
-rsvp-reader                   # fullscreen, reads ./book
-rsvp-reader --windowed        # normal window
-rsvp-reader ~/Books           # a different book folder
+uv tool install rsvpreader   # or: pipx install rsvpreader, pip install rsvpreader
+rsvpreader                   # fullscreen, reads ./book
+rsvpreader --windowed        # normal window
+rsvpreader ~/Books           # a different book folder
 ```
 
 From a checkout:
 
 ```sh
 uv sync
-uv run rsvp-reader --windowed
+uv run rsvpreader --windowed
 ```
 
-`python rsvp_reader.py` still works as a launcher for the old invocation.
+`python rsvpreader.py` works as a launcher from a checkout without installing.
 
-Put `.txt` files, in any folder structure, under `book/` next to where you run the command, or point `RSVP_READER_BOOK_ROOT` or the positional argument at another folder.
+Put `.txt` files, in any folder structure, under `book/` next to where you run the command, or point `RSVPREADER_BOOK_ROOT` or the positional argument at another folder.
 
 ## Controls
 
@@ -58,12 +58,12 @@ Changes apply live, rebuild the current book without losing your place, and pers
 
 | Platform | Location |
 |---|---|
-| macOS | `~/Library/Application Support/rsvp-reader/` |
-| Linux | `$XDG_CONFIG_HOME/rsvp-reader/` or `~/.config/rsvp-reader/` |
-| Windows | `%APPDATA%\rsvp-reader\` |
+| macOS | `~/Library/Application Support/rsvpreader/` |
+| Linux | `$XDG_CONFIG_HOME/rsvpreader/` or `~/.config/rsvpreader/` |
+| Windows | `%APPDATA%\rsvpreader\` |
 
-Override with `--config-dir` or `RSVP_READER_CONFIG_DIR`.
-A legacy `rsvp_settings.json` in the working directory is imported on first run.
+Override with `--config-dir` or `RSVPREADER_CONFIG_DIR`.
+On first run, settings and reading positions are imported from the directory the 1.0.x releases used (`rsvp-reader` in the same locations), then from a legacy `rsvp_settings.json` in the working directory.
 Reading positions live in `progress.json` in the same directory, keyed by the book's absolute path.
 
 ## How text is chunked
@@ -83,8 +83,8 @@ The pivot letter is the middle letter counting letters only, rounding left for a
 To inspect the units for any file without opening the GUI:
 
 ```sh
-uv run rsvp-reader --dump-chunks "book/selfhelp/some book.txt" --chunk-size 3
-uv run rsvp-reader --dump-chunks "book/selfhelp/some book.txt" --sentences
+uv run rsvpreader --dump-chunks "book/selfhelp/some book.txt" --chunk-size 3
+uv run rsvpreader --dump-chunks "book/selfhelp/some book.txt" --sentences
 ```
 
 ## Development
@@ -101,11 +101,11 @@ CI runs lint and tests on Linux, macOS and Windows for every push and pull reque
 
 ### Releasing
 
-The package version lives only in `__version__` in `src/rsvp_reader/__init__.py`.
+The package version lives only in `__version__` in `src/rsvpreader/__init__.py`.
 To release: bump it, merge, then publish a GitHub release whose tag is `v<version>` (for example `v1.0.1`).
 The publish workflow builds the distributions, checks that the tag matches the version, and uploads to PyPI through trusted publishing; no API token is stored anywhere.
 
-Layout under `src/rsvp_reader/`:
+Layout under `src/rsvpreader/`:
 
 | Module | Role |
 |---|---|

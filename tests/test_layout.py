@@ -1,4 +1,4 @@
-from rsvp_reader.layout import PAD_X, PAD_Y, TICK_GAP, TICK_LENGTH, flow_positions, pivot_box
+from rsvpreader.layout import PAD_X, PAD_Y, TICK_GAP, TICK_LENGTH, flow_positions, pivot_box
 
 
 def test_pivot_box_is_centered_and_fixed():

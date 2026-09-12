@@ -6,11 +6,11 @@ import tkinter as tk
 from tkinter import colorchooser
 from typing import TYPE_CHECKING
 
-from rsvp_reader.settings import BRIGHTNESS_RANGE, CHUNK_SIZES, FONT_SIZE_RANGE, WPM_RANGE
-from rsvp_reader.theme import PANEL_BG, PANEL_FG, PANEL_TROUGH, available_reader_fonts
+from rsvpreader.settings import BRIGHTNESS_RANGE, CHUNK_SIZES, FONT_SIZE_RANGE, WPM_RANGE
+from rsvpreader.theme import PANEL_BG, PANEL_FG, PANEL_TROUGH, available_reader_fonts
 
 if TYPE_CHECKING:
-    from rsvp_reader.app import App
+    from rsvpreader.app import App
 
 PANEL_WIDTH = 340
 

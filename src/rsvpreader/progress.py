@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from rsvp_reader.storage import read_json, write_json_atomic
+from rsvpreader.storage import read_json, write_json_atomic
 
 
 def _key(book_path: Path) -> str:
@@ -12,15 +12,29 @@ def _key(book_path: Path) -> str:
 
 
 class ProgressStore:
-    """Maps book path -> character offset into the joined unit text (see ReadingSession)."""
+    """Maps book path -> character offset into the joined unit text (see ReadingSession).
 
-    def __init__(self, path: Path) -> None:
+    Reads from the first existing `legacy_paths` entry when `path` does not exist yet, so a
+    rename of the config directory keeps every reading position; saves always go to `path`.
+    """
+
+    def __init__(self, path: Path, legacy_paths: tuple[Path, ...] = ()) -> None:
         self.path = path
+        self.legacy_paths = legacy_paths
         self._offsets: dict[str, int] | None = None
+
+    def _read(self) -> dict[str, object]:
+        data = read_json(self.path)
+        if data is None:
+            for legacy in self.legacy_paths:
+                data = read_json(legacy)
+                if data is not None:
+                    break
+        return data or {}
 
     def _load(self) -> dict[str, int]:
         if self._offsets is None:
-            data = read_json(self.path) or {}
+            data = self._read()
             self._offsets = {k: int(v) for k, v in data.items() if isinstance(v, int) and v >= 0}
         return self._offsets
 
