@@ -63,7 +63,7 @@ Changes apply live, rebuild the current book without losing your place, and pers
 | Windows | `%APPDATA%\rsvpreader\` |
 
 Override with `--config-dir` or `RSVPREADER_CONFIG_DIR`.
-On first run, settings and reading positions are imported from the directory the 1.0.x releases used (`rsvp-reader` in the same locations), then from a legacy `rsvp_settings.json` in the working directory.
+On first run, settings and reading positions are imported from the directory the 1.0.x releases used (`RSVP_READER_CONFIG_DIR` if set, otherwise `rsvp-reader` in the same locations), then from a legacy `rsvp_settings.json` in the working directory.
 Reading positions live in `progress.json` in the same directory, keyed by the book's absolute path.
 
 ## How text is chunked

@@ -10,6 +10,8 @@ APP_NAME = "rsvpreader"
 # Config directory name used by the 1.0.x releases, which shipped as "rsvp-reader".
 LEGACY_APP_NAME = "rsvp-reader"
 CONFIG_DIR_ENV = "RSVPREADER_CONFIG_DIR"
+# Override honored by the 1.0.x releases; read only to locate data to migrate.
+LEGACY_CONFIG_DIR_ENV = "RSVP_READER_CONFIG_DIR"
 BOOK_ROOT_ENV = "RSVPREADER_BOOK_ROOT"
 DEFAULT_BOOK_DIRNAME = "book"
 SETTINGS_FILENAME = "settings.json"
@@ -41,6 +43,9 @@ def user_config_dir(env: dict[str, str] | None = None, platform: str = sys.platf
 def legacy_config_dir(env: dict[str, str] | None = None, platform: str = sys.platform) -> Path:
     """Where the 1.0.x releases kept settings.json and progress.json; read on first run only."""
     env = os.environ if env is None else env
+    override = env.get(LEGACY_CONFIG_DIR_ENV)
+    if override:
+        return Path(override).expanduser()
     return _platform_config_dir(env, platform, LEGACY_APP_NAME)
 
 

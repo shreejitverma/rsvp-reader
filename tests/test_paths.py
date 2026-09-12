@@ -32,3 +32,9 @@ def test_legacy_config_dir_uses_pre_rename_name_and_ignores_override():
         "C:/AppData/rsvp-reader"
     )
     assert legacy_config_dir(env, "linux") != user_config_dir({"HOME": "/home/u"}, "linux")
+
+
+def test_legacy_config_dir_honors_pre_rename_override_only():
+    env = {"HOME": "/home/u", "RSVP_READER_CONFIG_DIR": "/dotfiles/rsvp"}
+    assert legacy_config_dir(env, "linux") == Path("/dotfiles/rsvp")
+    assert user_config_dir(env, "linux") == Path("/home/u/.config/rsvpreader")
