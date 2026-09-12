@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from rsvp_reader.library import display_path, list_entries
+from rsvpreader.library import display_path, list_entries
 
 
 def test_list_entries_orders_folders_then_books(tmp_path: Path):

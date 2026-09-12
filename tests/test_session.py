@@ -1,4 +1,4 @@
-from rsvp_reader.session import ReadingSession
+from rsvpreader.session import ReadingSession
 
 TEXT = "One two three four five six. Seven eight nine ten."
 

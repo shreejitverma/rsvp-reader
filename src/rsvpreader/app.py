@@ -7,13 +7,13 @@ import tkinter as tk
 import tkinter.font as tkfont
 from pathlib import Path
 
-from rsvp_reader.browser_view import FolderView
-from rsvp_reader.colors import apply_brightness
-from rsvp_reader.progress import ProgressStore
-from rsvp_reader.reader_view import ReaderView
-from rsvp_reader.settings import Settings, SettingsStore, platform_default_font_family
-from rsvp_reader.settings_panel import SettingsPanel
-from rsvp_reader.theme import (
+from rsvpreader.browser_view import FolderView
+from rsvpreader.colors import apply_brightness
+from rsvpreader.progress import ProgressStore
+from rsvpreader.reader_view import ReaderView
+from rsvpreader.settings import Settings, SettingsStore, platform_default_font_family
+from rsvpreader.settings_panel import SettingsPanel
+from rsvpreader.theme import (
     BG,
     STATUS_BRIGHTNESS_FACTOR,
     UI_FONT_CANDIDATES,
@@ -55,7 +55,7 @@ class App:
             )
         )
 
-        root.title("RSVP Reader")
+        root.title("rsvpreader")
         root.configure(bg=BG)
         self.is_fullscreen = fullscreen
         if fullscreen:
@@ -221,7 +221,7 @@ def run_app(
     try:
         root = tk.Tk()
     except tk.TclError as exc:
-        print(f"rsvp-reader: cannot open a display: {exc}", file=sys.stderr)
+        print(f"rsvpreader: cannot open a display: {exc}", file=sys.stderr)
         return 1
     App(
         root,

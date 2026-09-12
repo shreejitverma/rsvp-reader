@@ -6,11 +6,11 @@ import tkinter as tk
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from rsvp_reader.library import Entry, display_path, list_entries
-from rsvp_reader.theme import BG
+from rsvpreader.library import Entry, display_path, list_entries
+from rsvpreader.theme import BG
 
 if TYPE_CHECKING:
-    from rsvp_reader.app import App
+    from rsvpreader.app import App
 
 HINT = "Click or Enter: open   Up/Down: select   Esc: back   s: settings   q: quit"
 LIST_TOP_MARGIN = 10

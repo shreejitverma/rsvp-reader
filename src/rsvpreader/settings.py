@@ -7,8 +7,8 @@ from dataclasses import asdict, dataclass, fields, replace
 from pathlib import Path
 from typing import Any
 
-from rsvp_reader.colors import FALLBACK_COLOR, normalize_hex
-from rsvp_reader.storage import read_json, write_json_atomic
+from rsvpreader.colors import FALLBACK_COLOR, normalize_hex
+from rsvpreader.storage import read_json, write_json_atomic
 
 CHUNK_SIZES = (1, 2, 3)
 WPM_RANGE = (60, 1200)

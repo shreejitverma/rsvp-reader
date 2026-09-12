@@ -9,11 +9,11 @@ import pytest
 
 tk = pytest.importorskip("tkinter")
 
-from rsvp_reader.app import App  # noqa: E402
-from rsvp_reader.browser_view import FolderView  # noqa: E402
-from rsvp_reader.progress import ProgressStore  # noqa: E402
-from rsvp_reader.reader_view import ReaderView  # noqa: E402
-from rsvp_reader.settings import Settings, SettingsStore  # noqa: E402
+from rsvpreader.app import App  # noqa: E402
+from rsvpreader.browser_view import FolderView  # noqa: E402
+from rsvpreader.progress import ProgressStore  # noqa: E402
+from rsvpreader.reader_view import ReaderView  # noqa: E402
+from rsvpreader.settings import Settings, SettingsStore  # noqa: E402
 
 BOOK = 'One two three four. "Five six," seven eight nine. Ten eleven twelve.'
 

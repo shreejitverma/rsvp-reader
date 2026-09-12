@@ -1,6 +1,6 @@
 import pytest
 
-from rsvp_reader.autoplay import Autoplay, Ramp
+from rsvpreader.autoplay import Autoplay, Ramp
 
 
 def test_ramp_start_and_end():

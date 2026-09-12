@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from rsvp_reader.progress import ProgressStore
+from rsvpreader.progress import ProgressStore
 
 
 def test_missing_file_is_empty(tmp_path: Path):
@@ -33,3 +33,21 @@ def test_corrupt_values_dropped(tmp_path: Path):
     assert store.get(z) == 7
     assert store.get(x) == 0
     assert store.get(y) == 0
+
+
+def test_legacy_file_is_read_until_new_file_exists(tmp_path: Path):
+    book = tmp_path / "a.txt"
+    legacy = tmp_path / "old" / "progress.json"
+    legacy.parent.mkdir()
+    legacy.write_text(json.dumps({str(book.resolve()): 42}), encoding="utf-8")
+    new = tmp_path / "new" / "progress.json"
+
+    store = ProgressStore(new, legacy_paths=(legacy,))
+    assert store.get(book) == 42
+    store.set(book, 43)
+    assert store.save()
+    assert new.exists()
+
+    # Once the new file exists it wins, and the legacy file is left untouched.
+    assert ProgressStore(new, legacy_paths=(legacy,)).get(book) == 43
+    assert json.loads(legacy.read_text(encoding="utf-8")) == {str(book.resolve()): 42}

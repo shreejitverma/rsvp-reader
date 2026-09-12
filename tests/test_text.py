@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from rsvp_reader.text import (
+from rsvpreader.text import (
     Word,
     build_chunks,
     build_sentences,

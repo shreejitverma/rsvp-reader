@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from rsvp_reader.settings import Settings, SettingsStore, platform_default_font_family
+from rsvpreader.settings import Settings, SettingsStore, platform_default_font_family
 
 
 def test_defaults_are_sane():

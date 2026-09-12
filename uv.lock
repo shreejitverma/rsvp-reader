@@ -78,7 +78,7 @@ wheels = [
 ]
 
 [[package]]
-name = "rsvp-reader"
+name = "rsvpreader"
 source = { editable = "." }
 
 [package.dev-dependencies]

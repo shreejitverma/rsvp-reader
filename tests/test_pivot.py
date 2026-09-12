@@ -1,6 +1,6 @@
 import pytest
 
-from rsvp_reader.pivot import PivotSplit, pivot_letter_index, pivot_word_index, split_for_pivot
+from rsvpreader.pivot import PivotSplit, pivot_letter_index, pivot_word_index, split_for_pivot
 
 
 @pytest.mark.parametrize(

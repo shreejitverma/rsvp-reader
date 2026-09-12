@@ -8,15 +8,15 @@ import tkinter as tk
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from rsvp_reader.autoplay import Autoplay, Ramp
-from rsvp_reader.layout import flow_positions, pivot_box
-from rsvp_reader.pivot import split_for_pivot
-from rsvp_reader.session import ReadingSession
-from rsvp_reader.text import load_book_text, word_count
-from rsvp_reader.theme import BG, PIVOT_FG
+from rsvpreader.autoplay import Autoplay, Ramp
+from rsvpreader.layout import flow_positions, pivot_box
+from rsvpreader.pivot import split_for_pivot
+from rsvpreader.session import ReadingSession
+from rsvpreader.text import load_book_text, word_count
+from rsvpreader.theme import BG, PIVOT_FG
 
 if TYPE_CHECKING:
-    from rsvp_reader.app import App
+    from rsvpreader.app import App
 
 HOLD_TO_AUTOPLAY_MS = 2000
 HOLD_TO_SETTINGS_MS = 3000
